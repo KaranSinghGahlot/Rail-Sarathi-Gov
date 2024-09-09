@@ -1,0 +1,230 @@
+<html>
+<head>
+    <title>Rail Sarathi</title>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+</head>
+<body class="bg-gray-900 text-white flex justify-center items-center min-h-screen">
+    <div id="root" class="w-full max-w-md"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const Header = ({ onNavigate }) => (
+            <div className="fixed top-0 w-full max-w-md bg-gray-900 text-white flex justify-between p-4">
+                <button onClick={() => onNavigate('landing')} className="text-xl"><i className="fas fa-home"></i></button>
+                <button onClick={() => window.history.back()} className="text-xl"><i className="fas fa-arrow-left"></i></button>
+            </div>
+        );
+
+        const LandingPage = ({ onNavigate }) => (
+            <div className="w-full bg-white text-black rounded-lg p-6 mt-16">
+                <div className="flex justify-center mb-4">
+                    <img src="C:/Users/ajmer/OneDrive/Desktop/SIH/logo/Rail Sarathi.png" alt="App Logo" className="rounded-full" />
+                </div>
+                <h1 className="text-center text-2xl font-bold mb-4">Rail Sarathi</h1>
+                <div className="flex justify-center mb-4">
+                    <img src="https://placehold.co/150x150" alt="Illustration of a hand holding a phone with a map" className="rounded-full" />
+                </div>
+                <p className="text-center mb-4">Station Guide</p>
+                <p className="text-center text-sm mb-4">Find platforms, restrooms, food & shopping, and accessibility services in the station.</p>
+                <button onClick={() => onNavigate('login')} className="w-full bg-red-600 text-white py-2 rounded">Search</button>
+            </div>
+        );
+
+        const LoginPage = ({ onNavigate }) => (
+            <div className="w-full bg-white text-black rounded-lg p-6 mt-16">
+                <h1 className="text-center text-2xl font-bold mb-4">Rail Sarathi</h1>
+                <div className="flex justify-center mb-4">
+                    <img src="https://placehold.co/150x150" alt="Illustration of a hand holding a phone with a map" className="rounded-full" />
+                </div>
+                <input type="email" placeholder="Email" className="w-full mb-4 p-2 border rounded" />
+                <input type="password" placeholder="Password" className="w-full mb-4 p-2 border rounded" />
+                <button onClick={() => onNavigate('explore')} className="w-full bg-red-600 text-white py-2 rounded">Login</button>
+            </div>
+        );
+
+        const ExplorePage = ({ onNavigate }) => (
+            <div className="w-full bg-white text-black rounded-lg p-6 mt-16">
+                <div className="flex justify-between items-center mb-4">
+                    <p>Current Site:</p>
+                    <input type="text" placeholder="Search Location" className="p-2 border rounded" />
+                    <i className="fas fa-bars"></i>
+                </div>
+                <div className="mb-4">
+                    <h2 className="text-lg font-bold mb-2">Nearby Stations</h2>
+                    <div className="flex space-x-2">
+                        <img src="https://placehold.co/100x100" alt="Image of a nearby station" className="rounded" />
+                        <img src="https://placehold.co/100x100" alt="Image of a nearby station" className="rounded" />
+                    </div>
+                </div>
+                <div className="mb-4">
+                    <h2 className="text-lg font-bold mb-2">Services</h2>
+                    <div className="grid grid-cols-3 gap-2">
+                        <div className="w-16 h-16 bg-gray-300 rounded"></div>
+                        <div className="w-16 h-16 bg-gray-300 rounded"></div>
+                        <div className="w-16 h-16 bg-gray-300 rounded"></div>
+                        <div className="w-16 h-16 bg-gray-300 rounded"></div>
+                        <div className="w-16 h-16 bg-gray-300 rounded"></div>
+                        <div className="w-16 h-16 bg-gray-300 rounded"></div>
+                    </div>
+                </div>
+                <div>
+                    <h2 className="text-lg font-bold mb-2">Explore Station</h2>
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 bg-gray-300 rounded">Food</div>
+                        <div className="p-2 bg-gray-300 rounded">Retail</div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const StationPage = ({ onNavigate }) => (
+            <div className="w-full bg-white text-black rounded-lg p-6 mt-16">
+                <h1 className="text-lg font-bold mb-4">Profile</h1>
+                <div className="w-full h-32 bg-red-600 mb-4"></div>
+                <h2 className="text-lg font-bold mb-2">Settings</h2>
+                <ul className="space-y-2">
+                    <li className="p-2 bg-gray-300 rounded">Personal Information</li>
+                    <li className="p-2 bg-gray-300 rounded">Travel documents</li>
+                    <li className="p-2 bg-gray-300 rounded">Payment Methods</li>
+                    <li className="p-2 bg-gray-300 rounded">Emergency Contacts</li>
+                    <li className="p-2 bg-gray-300 rounded">Security</li>
+                </ul>
+            </div>
+        );
+
+        const AccessibilityPage = ({ onNavigate }) => (
+            <div className="w-full bg-white text-black rounded-lg p-6 mt-16">
+                <h1 className="text-lg font-bold mb-4">Accessibility</h1>
+                <div className="mb-4">
+                    <h2 className="text-lg font-bold mb-2">Accessibility Services</h2>
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 bg-gray-300 rounded flex items-center">
+                            <i className="fas fa-wheelchair mr-2"></i> Wheelchair Access
+                        </div>
+                        <div className="p-2 bg-gray-300 rounded flex items-center">
+                            <i className="fas fa-blind mr-2"></i> Assistance for Visually Impaired
+                        </div>
+                        <div className="p-2 bg-gray-300 rounded flex items-center">
+                            <i className="fas fa-deaf mr-2"></i> Assistance for Hearing Impaired
+                        </div>
+                        <div className="p-2 bg-gray-300 rounded flex items-center">
+                            <i className="fas fa-elevator mr-2"></i> Elevators
+                        </div>
+                        <div className="p-2 bg-gray-300 rounded flex items-center">
+                            <i className="fas fa-braille mr-2"></i> Braille Signage
+                        </div>
+                        <div className="p-2 bg-gray-300 rounded flex items-center">
+                            <i className="fas fa-assistive-listening-systems mr-2"></i> Assistive Listening Systems
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 className="text-lg font-bold mb-2">Contact for Assistance</h2>
+                    <p className="p-2 bg-gray-300 rounded">For any assistance, please contact our support team at <a href="tel:+1234567890" className="text-blue-500">+1234567890</a> or email us at <a href="mailto:support@example.com" className="text-blue-500">support@example.com</a>.</p>
+                </div>
+            </div>
+        );
+
+        const FoodPage = ({ onNavigate }) => (
+            <div className="w-full bg-white text-black rounded-lg p-6 mt-16">
+                <h1 className="text-lg font-bold mb-4">Food</h1>
+                <div className="mb-4">
+                    <h2 className="text-lg font-bold mb-2">Nearby Restaurants</h2>
+                    <div className="flex space-x-2">
+                        <img src="https://placehold.co/100x100" alt="Image of a restaurant" className="rounded" />
+                        <img src="https://placehold.co/100x100" alt="Image of a restaurant" className="rounded" />
+                    </div>
+                </div>
+                <div className="mb-4">
+                    <h2 className="text-lg font-bold mb-2">Popular Dishes</h2>
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 bg-gray-300 rounded">Pizza</div>
+                        <div className="p-2 bg-gray-300 rounded">Burger</div>
+                        <div className="p-2 bg-gray-300 rounded">Sushi</div>
+                        <div className="p-2 bg-gray-300 rounded">Pasta</div>
+                        <div className="p-2 bg-gray-300 rounded">
+                            <img src="C:/Users/ajmer/OneDrive/Desktop/SIH/food/thali.jpg" alt="Thali" className="rounded" />
+                        </div>
+                        <div className="p-2 bg-gray-300 rounded">
+                            <img src="C:/Users/ajmer/OneDrive/Desktop/SIH/food/Noodles.jpeg" alt="Noodles" className="rounded" />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 className="text-lg font-bold mb-2">Cuisines</h2>
+                    <div className="grid grid-cols-3 gap-2">
+                        <div className="p-2 bg-gray-300 rounded">Italian</div>
+                        <div className="p-2 bg-gray-300 rounded">Chinese</div>
+                        <div className="p-2 bg-gray-300 rounded">Indian</div>
+                        <div className="p-2 bg-gray-300 rounded">Mexican</div>
+                        <div className="p-2 bg-gray-300 rounded">Japanese</div>
+                        <div className="p-2 bg-gray-300 rounded">Thai</div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const NavigationPage = ({ onNavigate }) => (
+            <div className="w-full bg-white text-black rounded-lg p-6 mt-16">
+                <div className="flex justify-between items-center mb-4">
+                    <input type="text" placeholder="Search Location" className="p-2 border rounded" />
+                    <i className="fas fa-bars"></i>
+                </div>
+                <div className="w-full h-64 bg-gray-300 mb-4">
+                    <img src="C:/Users/ajmer/OneDrive/Desktop/SIH/Navigation/NDLS.png" alt="Navigation Map" className="w-full h-full object-cover rounded" />
+                </div>
+                <div className="flex justify-between">
+                    <button className="bg-green-600 text-white py-2 px-4 rounded">Start</button>
+                    <button className="bg-gray-600 text-white py-2 px-4 rounded">End</button>
+                    <button className="bg-gray-600 text-white py-2 px-4 rounded">Cancel</button>
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            const [page, setPage] = useState('landing');
+
+            const renderPage = () => {
+                switch (page) {
+                    case 'landing':
+                        return <LandingPage onNavigate={setPage} />;
+                    case 'login':
+                        return <LoginPage onNavigate={setPage} />;
+                    case 'explore':
+                        return <ExplorePage onNavigate={setPage} />;
+                    case 'station':
+                        return <StationPage onNavigate={setPage} />;
+                    case 'accessibility':
+                        return <AccessibilityPage onNavigate={setPage} />;
+                    case 'food':
+                        return <FoodPage onNavigate={setPage} />;
+                    case 'navigation':
+                        return <NavigationPage onNavigate={setPage} />;
+                    default:
+                        return <LandingPage onNavigate={setPage} />;
+                }
+            };
+
+            return (
+                <div className="flex flex-col items-center space-y-8 p-4">
+                    <Header onNavigate={setPage} />
+                    {renderPage()}
+                    <div className="fixed bottom-0 w-full max-w-md bg-white text-black flex justify-around p-4">
+                        <i className="fas fa-map-marker-alt text-xl" onClick={() => setPage('navigation')}></i>
+                        <i className="fas fa-search text-xl" onClick={() => setPage('explore')}></i>
+                        <i className="fas fa-wheelchair text-xl" onClick={() => setPage('accessibility')}></i>
+                        <i className="fas fa-utensils text-xl" onClick={() => setPage('food')}></i>
+                        <i className="fas fa-user text-xl" onClick={() => setPage('station')}></i>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
